@@ -18,6 +18,7 @@ namespace ArraysAndLists
         // If more than two people like your post, it returns: "[Friend 1], [Friend 2] and [Number of Other People] others liked your post."
         public static string FacebookLikes(params string[] names)
         {
+            // this is my code it works
             // Delete the below line when you are writing your code
             return default;
         }
@@ -27,6 +28,7 @@ namespace ArraysAndLists
         // ascending order and return the sorted result as a string of integers seperated by spaces.
         public static string NumberSorter(params int[] numbers)
         {
+
             // Delete the below line when you are writing your code
             return default;
         }
