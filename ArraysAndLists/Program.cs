@@ -20,6 +20,8 @@ namespace ArraysAndLists
         {
             // Delete the below line when you are writing your code
             return default;
+
+            //hello world
         }
 
         // 2 - Write a method that accepts any number of integers (minimum of two integers). If an
