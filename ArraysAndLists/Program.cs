@@ -11,16 +11,7 @@ namespace ArraysAndLists
         // post, Facebook returns different information.
 
         // Write a method that accepts any number of names.
-        // Return a string based on the below pattern.
-        // If no one likes your post, it returns an empty string.
-        // If only one person likes your post, it returns: "[Friend's Name] liked your post."
-        // If two people like your post, it returns: "[Friend 1] and [Friend 2] liked your post."
-        // If more than two people like your post, it returns: "[Friend 1], [Friend 2] and [Number of Other People] others liked your post."
-        public static string FacebookLikes(params string[] names)
-        {
-            // Delete the below line when you are writing your code
-            return default;
-        }
+        // 
 
         // 2 - Write a method that accepts any number of integers (minimum of two integers). If an
         // integer is a duplicate, return "Error". If all integers are unique, then order them in
