@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Linq;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 
 namespace ArraysAndLists
 {
@@ -40,15 +37,17 @@ namespace ArraysAndLists
 
             var input = numbers.Length;
 
-            if (distinct != input)
+           if (distinct != input)
 
                 return "Error";
             else
                 Array.Sort(numbers);
-            result = numbers.Aggregate(result, (current, number) => current + (number + " "));
-
-            result = result[0..^1];
-            return result;
+             
+            foreach (var number in numbers)
+            
+              result += number + " ";
+            
+            return result.Trim();
         }
 
         // 3 - Write a method that accepts a string for a name. Use an array to reverse the characters
@@ -85,10 +84,31 @@ namespace ArraysAndLists
         // So for example, an array consisting of [2, 2, 1, 3] should return an integer array of {1, 2, 3}. 
         public static int[] UniqueNumbers(params int[] numbers)
         {
-            Array.Sort(numbers);
-            var result = numbers.Distinct().ToArray();
+            if (numbers.Length != numbers.Distinct().Count())
+                Array.Sort(numbers);
 
-            return result;
+            else
+                Array.Sort(numbers);
+                         
+
+           var listNumbers = numbers.ToList();
+            for (var i = 0; i < listNumbers.Count(); i++)
+
+                for (var n = 0; n < listNumbers.Count(); n++)
+
+                    if (listNumbers[i] == listNumbers[n])
+
+                        listNumbers.RemoveAt(n);
+
+            listNumbers.Sort();
+            return numbers.Distinct().ToArray();
+                        
+
+
+
+           
+           
+            
         }
 
         private static class Program
