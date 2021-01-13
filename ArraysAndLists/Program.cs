@@ -47,15 +47,16 @@ namespace ArraysAndLists
 
             var input = numbers.Length;
 
+            Array.Sort(numbers);
+
             if (distinct != input)
                 return "Error";
 
-            else
-                Array.Sort(numbers);
-            result = numbers.Aggregate(result, (current, number) => current + (number + " "));
-
-            result = result[0..^1];
-            return result;
+            foreach (var number in numbers)
+            {
+                result += number + " ";
+            }
+            return result.Trim();
         }
 
         // 3 - Write a method that accepts a string for a name. Use an array to reverse the characters
@@ -93,9 +94,22 @@ namespace ArraysAndLists
         public static int[] UniqueNumbers(params int[] numbers)
         {
             Array.Sort(numbers);
-            var result = numbers.Distinct().ToArray();
 
-            return result;
+            var numberList = numbers.ToList();
+
+            for (int c = 0; c < numberList.Count; c++)
+            {
+                for (int t = 0; t < numberList.Count; t++)
+                {
+                    if (numberList[c] == numberList[t])
+                    {
+                        numberList.RemoveAt(t);
+                    }
+                }
+            }
+            numberList.Sort();
+
+            return numbers.Distinct().ToArray();
         }
 
         private static class Program
@@ -108,3 +122,4 @@ namespace ArraysAndLists
         }
     }
 }
+
