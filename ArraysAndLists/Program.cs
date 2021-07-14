@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Xml.Schema;
 
 namespace ArraysAndLists
 {
@@ -19,9 +20,30 @@ namespace ArraysAndLists
         // If more than two people like your post, it returns: "[Friend 1], [Friend 2] and [Number of Other People] others liked your post."
         public static string FacebookLikes(params string[] names)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+           
+           
+            
+            string strMessage = string.Empty;
+          
+           if(names.Length == 0)
+			{
+                return strMessage = string.Empty;
+			}
+           if (names.Length ==1 )
+			{
+                return strMessage = String.Format("{0} liked your post.", names[0]);
+			}
+           if (names.Length ==2)
+			{
+                return strMessage = String.Format("{0} and {1} liked your post.", names[0], names[1]);
+			}
+           if (names.Length > 2)
+			{
+                return strMessage = String.Format("{0}, {1} and {2} others liked your post.", names[0], names[1], (names.Length - 2));
+			}
+   //     
+            return strMessage;
+
         }
 
         // 2 - Write a method that accepts any number of integers (minimum of two integers). If an
@@ -29,9 +51,23 @@ namespace ArraysAndLists
         // ascending order and return the sorted result as a string of integers separated by spaces.
         public static string NumberSorter(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+			string strNumbers = "";
+			for (int i = 0; i < numbers.Length; i++)
+			{
+				for (int j = i+1 ; j < numbers.Length; j++)
+				{
+                    if (numbers[i] == numbers[j])
+					{
+                        return strNumbers = "Error";
+					}
+                    else
+					{
+                        Array.Sort(numbers);
+						strNumbers = string.Join(" ", numbers);
+					}
+                }
+			}
+            return strNumbers;
         }
 
         // 3 - Write a method that accepts a string for a name. Use an array to reverse the characters
@@ -39,9 +75,18 @@ namespace ArraysAndLists
         // "Error" if no text is inputted.
         public static string ReverseName(string name)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            string strName = "";
+
+            if (name == string.Empty )
+			{
+                return strName = "Error";
+			}
+            else
+			{
+                char[] charArray = name.ToCharArray();
+                Array.Reverse(charArray);
+                return strName = new string(charArray);
+            }
         }
 
         // 4 - Write a method that accepts any number of integers. If none or less than 5 numbers,
@@ -49,9 +94,21 @@ namespace ArraysAndLists
         // spaces, sorted in ascending order. Treat duplicate numbers normally.
         public static string SmallestNumbers(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            string strNumbers = "";
+
+            if (numbers.Length == 0 || numbers.Length < 5)
+			{
+                return strNumbers = "Invalid Array";
+			}
+            else
+			{
+                Array.Sort(numbers);
+                int[] another = new int[3];
+                Array.Copy(numbers, another, 3);
+                strNumbers = string.Join(" ", another);
+                return strNumbers;
+               
+            }
         }
 
         // 5 - Write a method that accepts any number of numbers (assume at least two numbers). The numbers
@@ -59,9 +116,10 @@ namespace ArraysAndLists
         // So for example, an array consisting of [2, 2, 1, 3] should return an integer array of {1, 2, 3}. 
         public static int[] UniqueNumbers(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            int[] distinct = numbers.Distinct().ToArray();
+            Array.Sort(distinct);
+
+            return distinct;
         }
 
         private static class Program
