@@ -16,12 +16,27 @@ namespace ArraysAndLists
         // If no one likes your post, it returns an empty string.
         // If only one person likes your post, it returns: "[Friend's Name] liked your post."
         // If two people like your post, it returns: "[Friend 1] and [Friend 2] liked your post."
-        // If more than two people like your post, it returns: "[Friend 1], [Friend 2] and [Number of Other People] others liked your post."
+        // If more than two people like your post, it returns: "[Friend 1], [Friend 2]
+        // and [Number of Other People] others liked your post."
         public static string FacebookLikes(params string[] names)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+
+            if (names.Count() >= 3)
+            {
+                return names[0] + ", " + names[1] + " and " + Convert.ToString(names.Count() - 2) + " others liked your post.";
+            }
+            else if (names.Count() == 2)
+            {
+                return names[0] + " and " + names[1] + " liked your post.";
+            }
+            else if (names.Count() == 1)
+            {
+                return names[0] + " liked your post.";
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // 2 - Write a method that accepts any number of integers (minimum of two integers). If an
@@ -29,9 +44,46 @@ namespace ArraysAndLists
         // ascending order and return the sorted result as a string of integers separated by spaces.
         public static string NumberSorter(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            int temp;
+            string result = "";
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                for (int j = i + 1; j < numbers.Count(); j++)
+                {
+                    if (i == numbers.Count())
+                    {
+                        break;
+                    }
+                    if (numbers[i] == numbers[j])
+                    {
+                        return "Error";
+                    }
+                }
+            }
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                for (int j = 0; j < numbers.Count(); j++)
+                {
+                    if (numbers[i] < numbers[j])
+                    {
+                        temp = numbers[i];
+                        numbers[i] = numbers[j];
+                        numbers[j] = temp;
+                    }
+                }
+            }
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                if (i == numbers.Count() - 1)
+                {
+                    result += Convert.ToString(numbers[i]);
+                }
+                else
+                {
+                    result += Convert.ToString(numbers[i]) + " ";
+                }
+            }
+            return result;
         }
 
         // 3 - Write a method that accepts a string for a name. Use an array to reverse the characters
@@ -39,9 +91,13 @@ namespace ArraysAndLists
         // "Error" if no text is inputted.
         public static string ReverseName(string name)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            if (name == "")
+            {
+                return "Error";
+            }
+            char[] array = name.ToCharArray();
+            Array.Reverse(array);
+            return new string(array);
         }
 
         // 4 - Write a method that accepts any number of integers. If none or less than 5 numbers,
@@ -49,9 +105,26 @@ namespace ArraysAndLists
         // spaces, sorted in ascending order. Treat duplicate numbers normally.
         public static string SmallestNumbers(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            int temp = 0;
+
+            if (numbers.Length < 5)
+            {
+                return "Invalid Array";
+            }
+
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                for (int j = 0; j < numbers.Count(); j++)
+                {
+                    if (numbers[i] < numbers[j])
+                    {
+                        temp = numbers[i];
+                        numbers[i] = numbers[j];
+                        numbers[j] = temp;
+                    }
+                }
+            }
+            return string.Format("{0} {1} {2}", numbers[0], numbers[1], numbers[2]);
         }
 
         // 5 - Write a method that accepts any number of numbers (assume at least two numbers). The numbers
@@ -59,9 +132,39 @@ namespace ArraysAndLists
         // So for example, an array consisting of [2, 2, 1, 3] should return an integer array of {1, 2, 3}. 
         public static int[] UniqueNumbers(params int[] numbers)
         {
-            // Delete the below line when you are writing your code, don't forget to use your
-            // own return statement.
-            return default;
+            int k = 0;
+            int[] result = new int[0];
+            int temp = 0;
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                for (int j = 0; j < numbers.Count(); j++)
+                {
+                    if (numbers[i] < numbers[j])
+                    {
+                        temp = numbers[i];
+                        numbers[i] = numbers[j];
+                        numbers[j] = temp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+
+                Array.Resize(ref result, result.Length + 1);
+
+                if (i == 0 || numbers[i] != result[k - 1])
+                {
+                    result[k] = numbers[i];
+                    k++;
+                }
+
+                else if (numbers[i] == result[k - 1])
+                {
+                    Array.Resize(ref result, result.Length - 1);
+                }
+            }
+            return result;
         }
 
         private static class Program
